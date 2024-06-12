@@ -8,7 +8,10 @@ import java.net.URL;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
 import java.util.stream.Collectors;
-
+/**
+ * @author Gary Zhou
+ * @since v1.0.0
+*/
 public class NewsApi {
     private String apiKey;
 
