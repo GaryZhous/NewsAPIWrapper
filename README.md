@@ -16,3 +16,5 @@ Add the following dependencies to your pom.xml file to use my code!
 		<version>v1.0.1</version>
 	</dependency>
 ```
+
+[![](https://jitpack.io/v/GaryZhous/NewsAPIWrapper.svg)](https://jitpack.io/#GaryZhous/NewsAPIWrapper)
