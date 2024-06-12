@@ -1,5 +1,5 @@
 # Java Maven Wrapper for News API
-There's already an existing wrapper in Java, but that's for Gradle users. So I made this Maven wrapper.
+There's already an existing wrapper in Java, but that's for Gradle users. So I made this Maven wrapper. Check out the amazing News API here!
 [News API official website](https://newsapi.org/)
 
 Add the following dependencies to your pom.xml file to use my code!
