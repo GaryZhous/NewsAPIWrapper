@@ -35,3 +35,15 @@ Similar here, you can replace those params with "null" based on your preference
 SourceResponse response = newsApi.getNewsSources(category, country, language);
 ```
 For the third endpoint, you can fecth information about news sources (e.g. CNN & BBC) by passing proper params to the "getNewsSources" function. You can also leave them to "null".
+### Then...
+you can either use the getters of the response classes or pass those reponse objects back to "newsApi"'s member functions to access values like "Author", "Articles", and "Content".
+```Java
+//example here
+NewsApi newsApi = new NewsApi("your_api_key_here");
+SourceResponse response = newsApi.getNewsSources("technology", "en", "us");
+
+if (response != null && response.getSources() != null) {
+	response.getSources().forEach(source -> 
+	System.out.println(source.getName() + " - " + source.getDescription()));
+}
+```
