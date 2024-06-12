@@ -25,3 +25,13 @@ NewsApi newsApi = new NewsApi("your_api_key");
 NewsResponse response = newsApi.getNews(the_thing_you_want_to_know, start_time_stamp, end_time_stamp, sort_by, page_size, page_num);
 ```
 The first API endpoint can be accessed through creating a NewsApi object by passing your api key. The call function "getNews" with parameters (except for the first one, the other params are optional. If you don't want your query results be based on them, please replace them with "null")
+```Java
+//endpoint 2 top headlines
+NewsResponse response = newsApi.getTopHeadlines(country, sources, query, page_size, page_num);
+```
+Similar here, you can replace those params with "null" based on your preference
+```Java
+//endpoint 3 News Sources
+SourceResponse response = newsApi.getNewsSources(category, country, language);
+```
+For the third endpoint, you can fecth information about news sources (e.g. CNN & BBC) by passing proper params to the "getNewsSources" function. You can also leave them to "null".
