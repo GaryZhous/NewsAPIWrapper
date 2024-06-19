@@ -18,23 +18,71 @@ public class NewsApi {
     public NewsApi(String key) {
         this.apiKey = key;
     }
-
+    
     /**
-     * Fetches news from the News API with various optional parameters.
+     * The basic get News function of NewsAPI that fetches news related to the query
+     * @param query Keywords or phrases to search for in the article title and body.
+     * @return a NewsResponse object containing the fetched news articles
+     */
+    public NewsResponse getNews(String query) {
+        try {
+            String encodedQuery = URLEncoder.encode(query, "UTF-8");
+            StringBuilder urlString = new StringBuilder("https://newsapi.org/v2/everything?q=" + encodedQuery);
+
+            urlString.append("&apiKey=").append(apiKey);
+            URL url = new URL(urlString.toString());
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+
+            System.out.println("Sending request to URL : " + url);
+            System.out.println("Response Code : " + con.getResponseCode());
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuilder response = new StringBuilder();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+            con.disconnect();
+
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.readValue(response.toString(), NewsResponse.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    /**
+     * A thorough get News function that fetches news from the News API with various optional parameters.
      * @param query the search query
+     * @param SearchIn The fields to restrict your q search to: title, description, or content
+     * @param domains A comma-seperated string of domains (eg bbc.co.uk, techcrunch.com, engadget.com) to restrict the search to
+     * @param A comma-seperated string of domains (eg bbc.co.uk, techcrunch.com, engadget.com) to remove from the results
      * @param from the start date for the news articles (optional)
      * @param to the end date for the news articles (optional)
+     * @param language he 2-letter ISO-639-1 code of the language you want to get headlines for (e.g. en, ar, and de)
      * @param sortBy method of sorting the news articles (optional)
      * @param pageSize number of results per page (optional)
      * @param page page number of the results (optional)
      * @return a NewsResponse object containing the fetched news articles
      */
-    public NewsResponse getNews(String query, String from, String to, String sortBy, Integer pageSize, Integer page) {
+    public NewsResponse getNews(String query, String SearchIn, String domains, String excludeDomains, String from, String to, String language, String sortBy, Integer pageSize, Integer page) {
         try {
             String encodedQuery = URLEncoder.encode(query, "UTF-8");
             StringBuilder urlString = new StringBuilder("https://newsapi.org/v2/everything?q=" + encodedQuery);
 
             // Add optional parameters only if they are provided
+            if(SearchIn != null && !SearchIn.isEmpty()) {
+                urlString.append("&searchin=").append(SearchIn);
+            }
+            if (domains != null && !domains.isEmpty()) {
+                urlString.append("&domains=").append(domains);
+            }
+            if (excludeDomains != null && !excludeDomains.isEmpty()) {
+                urlString.append("&excludeDomains=").append(excludeDomains);
+            }
             if (from != null && !from.isEmpty()) {
                 urlString.append("&from=").append(from);
             }
@@ -43,6 +91,9 @@ public class NewsApi {
             }
             if (sortBy != null && !sortBy.isEmpty()) {
                 urlString.append("&sortBy=").append(sortBy);
+            }
+            if (language != null && !language.isEmpty()) {
+                urlString.append("&language=").append(language);
             }
             if (pageSize != null) {
                 urlString.append("&pageSize=").append(pageSize);
