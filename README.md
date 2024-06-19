@@ -15,7 +15,7 @@ Add the following dependencies to your pom.xml file to use my code through maven
 	<dependency>
 		<groupId>com.github.GaryZhous</groupId>
 		<artifactId>NewsAPIWrapper</artifactId>
-		<version>v1.0.2</version> <----- or v1.0.1 ----->
+		<version>v1.0.2</version> <!-- or v1.0.1 -->
 	</dependency>
 ```
 ### How to use it?
