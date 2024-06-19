@@ -8,21 +8,26 @@ import java.net.URL;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
 import java.util.stream.Collectors;
+
 /**
+ * NewsApi class for interacting with the News API.
+ * Provides methods to fetch news articles and sources.
+ * 
  * @author Gary Zhou
  * @since v1.0.0
-*/
+ */
 public class NewsApi {
     private String apiKey;
 
     public NewsApi(String key) {
         this.apiKey = key;
     }
-    
+
     /**
-     * The basic get News function of NewsAPI that fetches news related to the query
+     * The basic get News function of NewsAPI that fetches news related to the query.
+     * 
      * @param query Keywords or phrases to search for in the article title and body.
-     * @return a NewsResponse object containing the fetched news articles
+     * @return a NewsResponse object containing the fetched news articles.
      */
     public NewsResponse getNews(String query) {
         try {
@@ -53,29 +58,30 @@ public class NewsApi {
             return null;
         }
     }
-    
+
     /**
      * A thorough get News function that fetches news from the News API with various optional parameters.
-     * @param query the search query
-     * @param SearchIn The fields to restrict your q search to: title, description, or content
-     * @param domains A comma-seperated string of domains (eg bbc.co.uk, techcrunch.com, engadget.com) to restrict the search to
-     * @param A comma-seperated string of domains (eg bbc.co.uk, techcrunch.com, engadget.com) to remove from the results
-     * @param from the start date for the news articles (optional)
-     * @param to the end date for the news articles (optional)
-     * @param language he 2-letter ISO-639-1 code of the language you want to get headlines for (e.g. en, ar, and de)
-     * @param sortBy method of sorting the news articles (optional)
-     * @param pageSize number of results per page (optional)
-     * @param page page number of the results (optional)
-     * @return a NewsResponse object containing the fetched news articles
+     * 
+     * @param query          Keywords or phrases to search for in the article.
+     * @param searchIn       The fields to restrict your q search to: title, description, or content.
+     * @param domains        A comma-separated string of domains (e.g., bbc.co.uk, techcrunch.com) to restrict the search to.
+     * @param excludeDomains A comma-separated string of domains to remove from the results.
+     * @param from           The start date for the news articles (optional).
+     * @param to             The end date for the news articles (optional).
+     * @param language       The 2-letter ISO-639-1 code of the language you want to get headlines for (e.g., en, ar, and de).
+     * @param sortBy         Method of sorting the news articles (optional).
+     * @param pageSize       Number of results per page (optional).
+     * @param page           Page number of the results (optional).
+     * @return a NewsResponse object containing the fetched news articles.
      */
-    public NewsResponse getNews(String query, String SearchIn, String domains, String excludeDomains, String from, String to, String language, String sortBy, Integer pageSize, Integer page) {
+    public NewsResponse getNews(String query, String searchIn, String domains, String excludeDomains, String from, String to, String language, String sortBy, Integer pageSize, Integer page) {
         try {
             String encodedQuery = URLEncoder.encode(query, "UTF-8");
             StringBuilder urlString = new StringBuilder("https://newsapi.org/v2/everything?q=" + encodedQuery);
 
             // Add optional parameters only if they are provided
-            if(SearchIn != null && !SearchIn.isEmpty()) {
-                urlString.append("&searchin=").append(SearchIn);
+            if (searchIn != null && !searchIn.isEmpty()) {
+                urlString.append("&searchIn=").append(searchIn);
             }
             if (domains != null && !domains.isEmpty()) {
                 urlString.append("&domains=").append(domains);
@@ -129,18 +135,19 @@ public class NewsApi {
 
     /**
      * Fetches top headlines with optional parameters.
-     * @param country The 2-letter ISO 3166-1 code of the country (optional)
-     * @param category The category of the news (optional)
-     * @param sources Comma-separated string of identifiers for the news sources (optional)
-     * @param query Keywords or phrases to search for in the article (optional)
-     * @param pageSize Number of results per page (optional)
-     * @param page Page number of the results (optional)
-     * @return a NewsResponse object containing the fetched news articles
+     * 
+     * @param country  The 2-letter ISO 3166-1 code of the country (optional).
+     * @param category The category of the news (optional).
+     * @param sources  Comma-separated string of identifiers for the news sources (optional).
+     * @param query    Keywords or phrases to search for in the article (optional).
+     * @param pageSize Number of results per page (optional).
+     * @param page     Page number of the results (optional).
+     * @return a NewsResponse object containing the fetched news articles.
      */
     public NewsResponse getTopHeadlines(String country, String category, String sources, String query, Integer pageSize, Integer page) {
         try {
             StringBuilder urlBuilder = new StringBuilder("https://newsapi.org/v2/top-headlines?apiKey=" + apiKey);
-            
+
             if (country != null && !country.isEmpty()) {
                 urlBuilder.append("&country=").append(country);
             }
@@ -187,10 +194,11 @@ public class NewsApi {
 
     /**
      * Fetches the available news sources from the News API with optional filtering.
-     * @param category The category of the news (optional)
-     * @param language The language of the news (optional)
-     * @param country The country of the news (optional)
-     * @return a SourceResponse object containing a list of news sources
+     * 
+     * @param category The category of the news (optional).
+     * @param language The language of the news (optional).
+     * @param country  The country of the news (optional).
+     * @return a SourceResponse object containing a list of news sources.
      */
     public SourceResponse getNewsSources(String category, String language, String country) {
         try {
@@ -232,7 +240,7 @@ public class NewsApi {
     }
 
     // Utility methods to extract specific information from the NewsResponse
-    public int getTotalResults(NewsResponse response){
+    public int getTotalResults(NewsResponse response) {
         return response.getTotalResults();
     }
 
@@ -262,46 +270,28 @@ public class NewsApi {
 
     // Modified utility methods to include a limit on the number of articles returned
     public List<String> getArticleTitles(NewsResponse response, int limit) {
-        return response.getArticles().stream()
-                       .map(Article::getTitle)
-                       .limit(limit)
-                       .collect(Collectors.toList());
+        return response.getArticles().stream().map(Article::getTitle).limit(limit).collect(Collectors.toList());
     }
 
     public List<String> getArticleContents(NewsResponse response, int limit) {
-        return response.getArticles().stream()
-                       .map(Article::getContent)
-                       .limit(limit)
-                       .collect(Collectors.toList());
+        return response.getArticles().stream().map(Article::getContent).limit(limit).collect(Collectors.toList());
     }
 
     public List<String> getArticleAuthors(NewsResponse response, int limit) {
-        return response.getArticles().stream()
-                       .map(Article::getAuthor)
-                       .limit(limit)
-                       .collect(Collectors.toList());
+        return response.getArticles().stream().map(Article::getAuthor).limit(limit).collect(Collectors.toList());
     }
 
     public List<String> getArticleURLs(NewsResponse response, int limit) {
-        return response.getArticles().stream()
-                       .map(Article::getUrl)
-                       .limit(limit)
-                       .collect(Collectors.toList());
+        return response.getArticles().stream().map(Article::getUrl).limit(limit).collect(Collectors.toList());
     }
 
     // Utility methods to fetch details from SourceResponse
     public List<String> getArticleSources(NewsResponse response, int limit) {
-        return response.getArticles().stream()
-                       .map(article -> article.getSource().getName())
-                       .limit(limit)
-                       .collect(Collectors.toList());
+        return response.getArticles().stream().map(article -> article.getSource().getName()).limit(limit).collect(Collectors.toList());
     }
 
     public List<String> getArticleDescriptions(NewsResponse response, int limit) {
-        return response.getArticles().stream()
-                       .map(Article::getDescription)
-                       .limit(limit)
-                       .collect(Collectors.toList());
+        return response.getArticles().stream().map(Article::getDescription).limit(limit).collect(Collectors.toList());
     }
 
     public List<String> getSourceIds(SourceResponse response) {
@@ -331,6 +321,7 @@ public class NewsApi {
     public List<String> getSourceCountries(SourceResponse response) {
         return response.getSources().stream().map(NewsSource::getCountry).collect(Collectors.toList());
     }
+
     // Utility methods to fetch details from SourceResponse with a limit on the number of results
     public List<String> getSourceIds(SourceResponse response, int limit) {
         return response.getSources().stream().map(NewsSource::getId).limit(limit).collect(Collectors.toList());
