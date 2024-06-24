@@ -32,12 +32,12 @@ The first API endpoint can be accessed through creating a NewsApi object by pass
 //endpoint 2 top headlines
 NewsResponse response = newsApi.getTopHeadlines(country, sources, query, page_size, page_num);
 ```
-Similar here, you can replace those params with "null" based on your preference
+Similar here, country, sources, query, page_size, and page_num are all optional parameters, you can leave them to "null".
 ```Java
 //endpoint 3 News Sources
 SourceResponse response = newsApi.getNewsSources(category, country, language);
 ```
-For the third endpoint, you can fecth information about news sources (e.g. CNN & BBC) by passing proper params to the "getNewsSources" function. You can also leave them to "null".
+For the third endpoint, you can fecth information about news sources (e.g. CNN & BBC) by passing proper params to the "getNewsSources" function. You can also leave parameters category, country, and language to "null" since they are optional.
 ### Then...
 you can either use the getters of the response classes or pass those reponse objects back to "newsApi"'s member functions to access values like "Author", "Articles", and "Content".
 ```Java
