@@ -23,11 +23,12 @@ Add the following dependencies to your pom.xml file to use my code through maven
 //endpoint 1 Everything
 NewsApi newsApi = new NewsApi("your_api_key");
 //default getNews
-NewsResponse response = newsApi.getNews(the_thing_you_want_to_know);
+NewsResponse response = newsApi.getNews(query);
 //advanced getNews
-NewsResponse response = newsApi.getNews(the_thing_you_want_to_know, search_in_title_description_or_content, domains, excluded_domains, start_time_stamp, end_time_stamp, language, sort_by, page_size, page_num);
+NewsResponse response = newsApi.getNews(query, search_in_title_description_or_content, domains, excluded_domains, start_time_stamp, end_time_stamp, language, sort_by, page_size, page_num);
 ```
 The first API endpoint can be accessed by creating a NewsApi object by passing your API key. The call function "getNews" with parameters (except for the first one, the other params are optional. If you don't want your query results to be based on them, please replace them with "null")
+for the "query" param, here's the pattern: Keywords or phrases to search for in the article title and body. Users can enclose phrases in quotes for exact matches, prepend a plus symbol (+) to ensure certain words or phrases appear, use a minus symbol (-) to exclude words, and combine keywords like AND, OR, NOT for complex queries. These elements can be grouped with parentheses for further specificity. The entire search query must be URL-encoded and is limited to 500 characters.
 ```Java
 //endpoint 2 top headlines
 NewsResponse response = newsApi.getTopHeadlines(country, sources, query, page_size, page_num);
