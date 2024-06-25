@@ -27,7 +27,7 @@ NewsResponse response = newsApi.getNews(the_thing_you_want_to_know);
 //advanced getNews
 NewsResponse response = newsApi.getNews(the_thing_you_want_to_know, search_in_title_description_or_content, domains, excluded_domains, start_time_stamp, end_time_stamp, language, sort_by, page_size, page_num);
 ```
-The first API endpoint can be accessed through creating a NewsApi object by passing your api key. The call function "getNews" with parameters (except for the first one, the other params are optional. If you don't want your query results be based on them, please replace them with "null")
+The first API endpoint can be accessed by creating a NewsApi object by passing your API key. The call function "getNews" with parameters (except for the first one, the other params are optional. If you don't want your query results to be based on them, please replace them with "null")
 ```Java
 //endpoint 2 top headlines
 NewsResponse response = newsApi.getTopHeadlines(country, sources, query, page_size, page_num);
@@ -37,9 +37,9 @@ Similar here, country, sources, query, page_size, and page_num are all optional 
 //endpoint 3 News Sources
 SourceResponse response = newsApi.getNewsSources(category, country, language);
 ```
-For the third endpoint, you can fecth information about news sources (e.g. CNN & BBC) by passing proper params to the "getNewsSources" function. You can also leave parameters category, country, and language to "null" since they are optional.
+For the third endpoint, you can fetch information about news sources (e.g. CNN & BBC) by passing proper parameters to the "getNewsSources" function. You can also leave parameters category, country, and language to "null" since they are optional.
 ### Then...
-you can either use the getters of the response classes or pass those reponse objects back to "newsApi"'s member functions to access values like "Author", "Articles", and "Content".
+you can either use the getters of the response classes or pass those response objects back to "newsApi"'s member functions to access values like "Author", "Articles", and "Content".
 ```Java
 //example here
 NewsApi newsApi = new NewsApi("your_api_key_here");
