@@ -29,7 +29,7 @@ Or this in Gradle
 		}
 	}
 	dependencies {
-	        implementation 'com.github.GaryZhous:NewsAPIWrapper:Tag' <!-- v1.0.2 or v1.0.1-->
+	        implementation 'com.github.GaryZhous:NewsAPIWrapper:Tag' //v1.0.1 or v1.0.2
 	}
 ```
 ### How to use it?
