@@ -1,7 +1,7 @@
-# Java Maven Wrapper for News API
+# Java Wrapper for News API
 [![](https://jitpack.io/v/GaryZhous/NewsAPIWrapper.svg)](https://jitpack.io/#GaryZhous/NewsAPIWrapper)
 
-There's already an existing wrapper in Java, but that's for Gradle users. So I made this Maven wrapper. Check out the amazing News API here!
+There's already an existing wrapper in Java, but that's for Gradle. So I made this wrapper supporting both Maven and Gradle. Check out the amazing News API here!
 [News API official website](https://newsapi.org/)
 
 Add the following dependencies to your pom.xml file to use my code through maven!
