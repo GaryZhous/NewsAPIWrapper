@@ -18,6 +18,20 @@ Add the following dependencies to your pom.xml file to use my code through maven
 		<version>v1.0.2</version> <!-- or v1.0.1 -->
 	</dependency>
 ```
+
+Or this in Gradle
+```gradle
+	dependencyResolutionManagement {
+		repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+		repositories {
+			mavenCentral()
+			maven { url 'https://jitpack.io' }
+		}
+	}
+	dependencies {
+	        implementation 'com.github.GaryZhous:NewsAPIWrapper:Tag'
+	}
+```
 ### How to use it?
 ```Java
 //endpoint 1 Everything
