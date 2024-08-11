@@ -63,8 +63,13 @@ if (response != null && response.getSources() != null) {
 	response.getSources().forEach(source -> 
 	System.out.println(source.getName() + " - " + source.getDescription()));
 }
+
 //Example 2
 NewsResponse news_response = newsApi.getNews("bitcoin+market");
 List<String> ArticleList = newsApi.getArticleTitles(news_response, 5); //get top 5 news articles from the response
 ArticleList.forEach(System.out::println);
+
+//Example 3
+NewsResponse news_response = newsApi.getNews("apple", null, null, null, null, "2024-08-10", "2024-08-11", null, "popularity", null, null); //a wrapper for GET https://newsapi.org/v2/everything?q=apple&from=2024-08-10&to=2024-08-11&sortBy=popularity&apiKey=your_api_key_here
+System.out.prinln(String.format("Total Results: %d", newsApi.getTotalResults(news_response))); //get the number of total results from the query
 ```
