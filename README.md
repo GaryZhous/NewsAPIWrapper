@@ -55,12 +55,16 @@ For the third endpoint, you can fetch information about news sources (e.g. CNN &
 ### Then...
 You can either use the getters of the response classes or pass those response objects back to "newsApi"'s member functions to access values like "Author", "Articles", and "Content".
 ```Java
-//example here
 NewsApi newsApi = new NewsApi("your_api_key_here");
+//Example 1
 SourceResponse response = newsApi.getNewsSources("technology", "en", "us");
 
 if (response != null && response.getSources() != null) {
 	response.getSources().forEach(source -> 
 	System.out.println(source.getName() + " - " + source.getDescription()));
 }
+//Example 2
+NewsResponse news_response = newsApi.getNews("bitcoin+market");
+List<String> ArticleList = newsApi.getArticleTitles(news_response, 5); //get top 5 news articles from the response
+ArticleList.forEach(System.out::println);
 ```
