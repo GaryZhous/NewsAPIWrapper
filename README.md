@@ -1,4 +1,4 @@
-# Java Wrapper for News API
+# Java Wrapper Library for News API
 [![](https://jitpack.io/v/GaryZhous/NewsAPIWrapper.svg)](https://jitpack.io/#GaryZhous/NewsAPIWrapper)
 
 There's already an unofficial wrapper in Java, but that's only for Gradle build. So I made this wrapper and hosted it on JitPack which supports both Maven and Gradle. Check out the amazing News API here!
