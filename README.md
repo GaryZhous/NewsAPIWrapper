@@ -3,6 +3,7 @@
 
 There's already an unofficial wrapper in Java, but that's only for Gradle build. So I made this wrapper and hosted it on JitPack which supports both Maven and Gradle. Check out the amazing News API here!
 [News API official website](https://newsapi.org/)
+### Contribute to this project by submit an issue or pull request!
 
 Add the following dependencies to your pom.xml file to use my code through maven!
 ```xml
