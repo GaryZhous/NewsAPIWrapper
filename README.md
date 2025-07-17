@@ -16,7 +16,7 @@ Add the following dependencies to your pom.xml file to use my code through maven
 	<dependency>
 		<groupId>com.github.GaryZhous</groupId>
 		<artifactId>NewsAPIWrapper</artifactId>
-		<version>Tag</version> <!-- v1.0.2 or v1.0.1 -->
+		<version>Tag</version> <!-- v1.0.2 or v1.0.3 -->
 	</dependency>
 ```
 
@@ -30,7 +30,7 @@ Or this in Gradle
 		}
 	}
 	dependencies {
-	        implementation 'com.github.GaryZhous:NewsAPIWrapper:Tag' //v1.0.1 or v1.0.2
+	        implementation 'com.github.GaryZhous:NewsAPIWrapper:Tag' //v1.0.3 or v1.0.2
 	}
 ```
 ### How to use it?
